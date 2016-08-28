@@ -6,6 +6,8 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,18 +15,22 @@
         <title>Cadastro de produtos</title>
     </head>
     <body>
-        <form method="post" action="/casadocodigo/produtos">
+
+        <form:form action="${spring:mvcUrl("saveProduto").build()}" method="post" commandName="produto">
             <div>
                 <label for="titulo">Titulo</label>
                 <input type="text" name="titulo" id="titulo"/>
+                <form:errors path="titulo"/>
             </div>
             <div>
                 <label for="descricao">Descrição</label>
                 <textarea rows="10" cols="20" name="descricao" id="descricao"></textarea>
+                <form:errors path="descricao"/>
             </div>
             <div>
                 <label for="numeroDePaginas">Número de paginas</label>
                 <input type="text" name="numeroDePaginas" id="numeroDePaginas"/>
+                <form:errors path="numeroDePaginas"/>
             </div>            
 
             <c:forEach items="${tipos}" var="tipoLivro" varStatus="status">
@@ -42,6 +48,6 @@
                 <input type="submit" value="Enviar">
             </div>
 
-        </form>
+        </form:form>
     </body>
 </html>
