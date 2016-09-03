@@ -20,12 +20,14 @@
         <table>
             <tr>
                 <td>Titulo</td>
+                <td>Imagem</td>
                 <td>Valores</td>
             </tr>
             
             <c:forEach items="${produtos}" var="produtos">
             <tr>
                 <td>${produtos.titulo}</td>
+                <td><img src="${produtos.sumarioPath}" width="100px" height="100px"/></td>
                 <td>
                     <c:forEach items="${produtos.precos}" var="precos">
                         [${precos.valor} - ${precos.tipoLivro}]                    

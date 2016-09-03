@@ -1,6 +1,8 @@
 package br.com.casadocodigo.loja.conf;
 
+import javax.servlet.MultipartConfigElement;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
+import javax.servlet.ServletRegistration.Dynamic;
 
 /**
  *
@@ -23,5 +25,11 @@ public class ServletSpringMVC extends
     @Override
     protected String[] getServletMappings() {
         return new String[]{"/"};
+    }
+    
+    @Override
+    protected void customizeRegistration(Dynamic registration) {
+        registration.setMultipartConfig(
+        new MultipartConfigElement(""));
     }
 }

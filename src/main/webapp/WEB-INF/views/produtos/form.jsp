@@ -16,22 +16,30 @@
     </head>
     <body>
 
-        <form:form action="${spring:mvcUrl("saveProduto").build()}" method="post" commandName="produto">
+        <form:form action="${spring:mvcUrl("saveProduto").build()}" method="post" 
+                   commandName="produto"
+                   enctype="multipart/form-data">
             <div>
                 <label for="titulo">Titulo</label>
-                <input type="text" name="titulo" id="titulo"/>
+                <form:input path="titulo"/>
                 <form:errors path="titulo"/>
             </div>
             <div>
                 <label for="descricao">Descrição</label>
-                <textarea rows="10" cols="20" name="descricao" id="descricao"></textarea>
+                <form:textarea path="descricao" rows="10" cols="20"/>
                 <form:errors path="descricao"/>
             </div>
             <div>
-                <label for="numeroDePaginas">Número de paginas</label>
-                <input type="text" name="numeroDePaginas" id="numeroDePaginas"/>
+                <label for="numeroDePaginas">Número de paginas</label>               
+                <form:input path="numeroDePaginas"/>
                 <form:errors path="numeroDePaginas"/>
-            </div>            
+            </div>    
+            
+            <div>
+                <label for="dataDeLancamento">Data de lançamento</label>
+                <form:input path="dataDeLancamento" type="date"/>
+                <form:errors path="dataDeLancamento"/>
+            </div>
 
             <c:forEach items="${tipos}" var="tipoLivro" varStatus="status">
                 <div>
@@ -43,6 +51,12 @@
                            value="${tipoLivro}"/>
                 </div>
             </c:forEach>
+            
+            <div>
+                <label for="sumario">Sumario do livro</label>
+                <input type="file" name="sumario"/>
+                <form:errors path="sumarioPath"/>
+            </div>
 
             <div>
                 <input type="submit" value="Enviar">
